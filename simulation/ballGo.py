@@ -34,10 +34,11 @@ def updateState(state):
 ################################################################
 
 def endState(state):
-    if (state[0] > width or state[0] < 0):
+    if (state[0] > width or state[0] < 0 or state[2] < 0 or state[2] > height):
         return True
     else:
         return False
+
 
 ################################################################
 
@@ -55,7 +56,7 @@ def handleEvent(state, event):
 ################################################################
 
 # The cat starts at the left, moving right 
-initState = (0,1,250,1)
+initState = (0,1,300,-1)
 
 # Run the simulation no faster than 60 frames per second
 frameRate = 60
@@ -63,4 +64,3 @@ frameRate = 60
 # Run the simulation!
 rw.runWorld(initState, updateDisplay, updateState, handleEvent,
             endState, frameRate)
-
