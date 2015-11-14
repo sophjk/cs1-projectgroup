@@ -12,7 +12,7 @@ rw.newDisplay(width, height, name)
 
 ################################################################
 
-# Display the state by drawing a cat at that x coordinate
+# Display the state by drawing a ball at that x coordinate
 myimage = dw.loadImage("basketballimage.png")
 
 def updateDisplay(state):
@@ -29,7 +29,7 @@ def updateDisplay(state):
 #
 # state -> state
 def updateState(state):
-    return((state[0]+state[1]),state[1], (state[2] + state[3]), state[3])
+    return((state[0]+state[1]), state[1], (state[2] + state[3]), state[3])
 
 ################################################################
 
@@ -44,19 +44,17 @@ def endState(state):
 
 def handleEvent(state, event):  
 #    print("Handling event: " + str(event))
-    if (event.type == pg.MOUSEBUTTONDOWN):
-        if (state[1]) == 1:
-            newState = -1
-        else:
-            newState = 1   
-        return((state[0],newState))
+    if (event.type == pg.KEYUP and event.key == pg.K_SPACE):
+        if (state[1]) == 0:
+            newState = 1
+        return((state[0], newState, state[2], newState ))
     else:
-        return(state)
+        return(initState)
 
 ################################################################
 
-# The cat starts at the left, moving right 
-initState = (0,1,300,-1)
+# The ball starts  
+initState = (0 ,0,300,0)
 
 # Run the simulation no faster than 60 frames per second
 frameRate = 60
