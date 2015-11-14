@@ -45,7 +45,7 @@ def updateState(state):
 ################################################################
 
 def endState(state):
-    if (state[0] > width or state[0] < 0 or state[2] < 0 or state[2] > height):
+    if (state[0] > width or state[0] < 0):
         return True
     else:
         return False
@@ -58,14 +58,14 @@ def handleEvent(state, event):
     if (event.type == pg.KEYUP and event.key == pg.K_SPACE):
         if (state[1]) == 0:
             newState = 1
-        return((state[0], newState, state[2], newState ))
+        return((state[0], newState, state[2],(newState*-1) ))
     else:
         return(initState)
 
 ################################################################
 
 # The ball starts  
-initState = (0 ,0,250,0)
+initState = (0,0,250,0)
 
 # Run the simulation no faster than 60 frames per second
 frameRate = 60
