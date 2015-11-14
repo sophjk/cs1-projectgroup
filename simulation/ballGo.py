@@ -17,7 +17,7 @@ myimage = dw.loadImage("basketballimage.png")
 
 def updateDisplay(state):
     dw.fill(dw.white)
-    dw.draw(myimage, (state[0], height/2))
+    dw.draw(myimage, (state[0], state[2]))
 
 
 ################################################################
@@ -29,7 +29,7 @@ def updateDisplay(state):
 #
 # state -> state
 def updateState(state):
-    return((state[0]+state[1],state[1]))
+    return((state[0]+state[1]),state[1], (state[2] + state[3]), state[3])
 
 ################################################################
 
@@ -55,7 +55,7 @@ def handleEvent(state, event):
 ################################################################
 
 # The cat starts at the left, moving right 
-initState = (0,1)
+initState = (0,1,250,1)
 
 # Run the simulation no faster than 60 frames per second
 frameRate = 60
