@@ -5,7 +5,7 @@ import drawWorld as dw
 import pygame as pg
 
 # Initialize world
-name = "Cat Fun. Press the mouse (but not too fast)!"
+name = "Aim, click, and shoot the ball!"
 width = 500
 height = 500
 rw.newDisplay(width, height, name)
@@ -16,7 +16,7 @@ rw.newDisplay(width, height, name)
 myimage = dw.loadImage("basketballimage.png")
 
 def updateDisplay(state):
-    dw.fill(dw.black)
+    dw.fill(dw.white)
     dw.draw(myimage, (state[0], height/2))
 
 
