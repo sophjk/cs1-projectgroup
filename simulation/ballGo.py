@@ -30,9 +30,18 @@ def updateDisplay(state):
 # components by name (as we saw with records in Idris).
 #
 # state -> state
+'''
 def updateState(state):
     return((state[0]+state[1]), state[1], (state[2] + state[3]), state[3])
-
+'''
+def updateState(state):
+    if(state[2] < 0 or state[2] > height):
+        switchState = ((state[3]) * (-1))
+        return((state[0] + state[1]),
+               state[1], (state[2] + switchState), switchState)
+    else:
+        return((state[0] + state[1]),
+               state[1], (state[2] + state[3]), state[3])
 ################################################################
 
 def endState(state):
