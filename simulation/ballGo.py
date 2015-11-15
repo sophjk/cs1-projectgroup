@@ -53,19 +53,19 @@ def endState(state):
 
 ################################################################
 
-def handleEvent(state, event):  
+def handleEvent(state, event):
 #    print("Handling event: " + str(event))
     if (event.type == pg.KEYUP and event.key == pg.K_SPACE):
         if (state[1]) == 0:
             newState = 1
-        return((state[0], newState, state[2],(newState*-1) ))
+        return((state[0], newState, state[2], (newState*-1)))
     else:
         return(initState)
 
 ################################################################
 
-# The ball starts  
-initState = (0,0,250,0)
+# The ball starts
+initState = (0, 0, 250, 0)
 
 # Run the simulation no faster than 60 frames per second
 frameRate = 60
