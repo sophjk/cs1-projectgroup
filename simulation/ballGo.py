@@ -15,11 +15,13 @@ rw.newDisplay(width, height, name)
 # Display the state by drawing a ball at that x coordinate
 myimage = dw.loadImage("basketballimage.png")
 ballimage = dw.loadImage("hoop.png")
+defender = dw.loadImage("defender.png")
 
 def updateDisplay(state):
     dw.fill(dw.white)
     dw.draw(myimage, (state[0], state[2]))
-    dw.draw(ballimage, (380,200))
+    dw.draw(ballimage, (380, 200))
+    dw.draw(defender, (220, 200))
 
 
 ################################################################
