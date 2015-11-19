@@ -13,15 +13,14 @@ rw.newDisplay(width, height, name)
 ################################################################
 
 # Display the state by drawing a ball at that x coordinate
-myimage = dw.loadImage("basketballimage.png")
-ballimage = dw.loadImage("hoop.png")
-defender = dw.loadImage("defender.png")
+ballimage = dw.loadImage("basketballimage.png")
+hoopimage = dw.loadImage("hoop.png")
+
 
 def updateDisplay(state):
     dw.fill(dw.white)
-    dw.draw(myimage, (state[0], state[2]))
-    dw.draw(ballimage, (380, 200))
-    dw.draw(defender, (220, 200))
+    dw.draw(ballimage, (state[0], state[2]))
+    dw.draw(hoopimage, (400, 150))
 
 
 ################################################################
@@ -32,15 +31,20 @@ def updateDisplay(state):
 # components by name (as we saw with records in Idris).
 #
 # state -> state
-'''
+
 def updateState(state):
-    return((state[0]+state[1]), state[1], (state[2] + state[3]), state[3])
-'''
-def updateState(state):
-    if(state[2] < 0 or state[2] > height):
+    if(state[2] < 0):
         switchState = ((state[3]) * (-1))
         return((state[0] + state[1]),
                state[1], (state[2] + switchState), switchState)
+    elif((state[0] >= 365) and (state[2] <= 180)) or ((state[0] >= 365 and state[2])):
+        switchState1 = ((state[1]) * (-1))
+        return((state[0] + switchState1), switchState1, (state[2] - state[3]), (state[3]*-1))
+   #elif(state[0] > 350 and state[2] == 150):
+        #switchState1 = ((state[1]) * (-1))
+        #return((state[0] + switchState1), switchState1, (state[2] +
+    elif((state[0] >= 365) and (state[2] >= 120)):
+       return((state[0] + state[1]),state[1], (state[2] + state[3]), state[3])
     else:
         return((state[0] + state[1]),
                state[1], (state[2] + state[3]), state[3])
@@ -49,31 +53,54 @@ def updateState(state):
 def endState(state):
     if (state[0] > width or state[0] < 0):
         return True
+        
     else:
         return False
+    
 
 
 ################################################################
 
 def handleEvent(state, event):
-# print("Handling event: " + str(event))
-    if (event.type == pg.KEYUP and event.key == pg.K_SPACE):
+    if (event.type == pg.MOUSEBUTTONDOWN):
         if (state[1]) == 0:
-            newState = 1
-        return((state[0], newState, state[2], (newState*-1)))
+            newState = 1.5
+        else:
+            newState = 0 
+        return((state[0],newState,state[2],(newState*-1)))
+    elif (event.type == pg.KEYDOWN and event.key == pg.K_UP):
+        if (state[1] and state[3]) == 0:
+            newState2 = -10
+            state[3] == 0
+            state[1] == 0
+            state[0] == 0
+        else:
+            newState2 = -10
+            state[3] == 0
+            state[1] == 0
+            state[0] == 0
+        return(state[0],state[1],(state[2] + newState2),state[3])
+    elif (event.type == pg.KEYDOWN and event.key == pg.K_DOWN):
+        if (state[2]) == 250:
+            newState2 = +10
+            state[3] == 0
+            state[1] == 0
+            state[0] == 0
+        else:
+            newState2 = +10
+            state[3] == 0
+            state[1] == 0
+            state[0] == 0
+        return(state[0],state[1],(state[2] + newState2),state[3])
+    elif (event.type == pg.KEYDOWN and event.key == pg.K_SPACE):
+        if (state[1]) == 0:
+            newState1 = 1.5
+        else:
+            newState1 = 0
+        return((state[0],newState1,state[2],(newState1*-1)))
     else:
-        return(initState)
-    '''if (event.type == pg.KEYDOWN ^ event.key == pg.K_SPACE):
-        if (state[1]) == 0:
-            return(state[0], state[1], (state[2] - 5), state[3])
-        else:
-            return(initState)
-    if (event.type == pg.KEYDOWN ^ event.key == pg.K_DOWN):
-        if (state[1]) == 0:
-            return(state[0], state[1], (state[2] + 5), state[3])
-        else:
-            return(initState)'''
-################################################################
+        return(state)
+    
 
 # The ball starts
 initState = (0, 0, 250, 0)
