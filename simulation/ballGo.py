@@ -6,7 +6,7 @@ import pygame as pg
 from random import randint
 
 # Initialize world
-name = "Aim, click, and shoot the ball!"
+name = "Use the up and down arrow keys, then press space bar.Try not to suck."
 width = 500
 height = 500
 rw.newDisplay(width, height, name)
@@ -38,6 +38,9 @@ def updateDisplay(state):
 # state -> state
 
 def updateState(state):
+    ball_rect = ballimage.get_rect()
+    ball_width = ball_rect.width
+    half_bw = ball_width / 2
     hoop_rect = hoopimage.get_rect()
     rim = 500 - hoop_rect.width
     hoop_height = state[5]
@@ -47,7 +50,7 @@ def updateState(state):
         return((state[0] + state[1]), 
                state[1], (state[2] + switchState), switchState, state[4], state[5])
     
-    elif(rim <= state[0] <= 500 and (hoop_height - .5) <= state[2] <= (hoop_height + .5)):
+    elif(rim <= (state[0] + half_bw)  <= 500 and (hoop_height - .5) <= state[2] <= (hoop_height + .5)):
          #they scored
        # label = myfont.render("Your Score: " + str(state[4] + 1), 1, (0,0,0))
        # screen.blit(label, (10,10))
