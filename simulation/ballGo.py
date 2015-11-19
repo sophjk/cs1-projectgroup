@@ -82,18 +82,12 @@ def endState(state):
 ################################################################
 
 def handleEvent(state, event):
-    if (event.type == pg.MOUSEBUTTONDOWN):
-        if (state[1]) == 0:
-            newState = 1.5
-        else:
-            newState = 0 
-        return((state[0],newState,state[2],(newState*-1)))
-    elif (event.type == pg.KEYDOWN and event.key == pg.K_UP):
+    if (event.type == pg.KEYDOWN and event.key == pg.K_UP):
         if (state[0] and state[2] > 10) == 0:
             newState2 = -10
         else:
             newState2 = 0
-        return(state[0],state[1],(state[2] + newState2),state[3], state[4], state[5])
+        return(state[0],state[1], (state[2] + newState2),state[3], state[4], state[5])
     elif (event.type == pg.KEYDOWN and event.key == pg.K_DOWN):
         if (state[0] and state[2] < 450) == 0:
             newState2 = +10
