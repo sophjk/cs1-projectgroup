@@ -15,6 +15,7 @@ pg.mixer.init
 myfont = pg.font.SysFont("monospace", 15)
 swish = pg.mixer.Sound("swish.wav")
 boo = pg.mixer.Sound("boo.wav")
+rim_sound = pg.mixer.Sound("rim.wav")
 #basket_hoops = 0
 #hoop_height = 150
 
@@ -56,7 +57,7 @@ def updateState(state):
         return((state[0] + state[1]), 
                state[1], (state[2] + switchState), switchState, state[4], state[5])
     
-    elif(rim <= (state[0] + half_bw)  <= 500 and (hoop_height - .5) <= state[2] <= (hoop_height + .5)):
+    elif((rim + 30) <= (state[0])  <= 500 and (hoop_height - 10) <= state[2] <= (hoop_height + 2)):
          #they scored
        # label = myfont.render("Your Score: " + str(state[4] + 1), 1, (0,0,0))
        # screen.blit(label, (10,10))
@@ -65,8 +66,13 @@ def updateState(state):
         print(state[4] + 1)
         new_hoop_height = randint(100, 400)
         return (0, 0, 250, 0, state[4] + 1, new_hoop_height)
+    elif ((rim - 10) <= (state[0] + half_bw) <= (rim + 20) and
+          (hoop_height - 5) <= state[2] <= (hoop_height + .5)):
+        rim_sound.play()
+        print("brick")
+        return (0, 0, 250, 0, 0, hoop_height)
     elif(state[0] >= 500):
-        #they missed
+        #they missed air ball
         boo.play()
         print("booo")
         print(0)
