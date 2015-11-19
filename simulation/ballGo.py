@@ -1,4 +1,4 @@
-# Try to get the ball in the hoop
+# Try to get the ball in the hoop lol
 
 import runWorld as rw
 import drawWorld as dw
@@ -6,7 +6,7 @@ import pygame as pg
 from random import randint
 
 # Initialize world
-name = "Use the up and down arrow keys, then press space bar.Try not to suck."
+name = "Use the up and down arrow keys, then press space bar."
 width = 500
 height = 500
 rw.newDisplay(width, height, name)
