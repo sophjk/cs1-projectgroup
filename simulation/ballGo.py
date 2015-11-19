@@ -11,7 +11,10 @@ width = 500
 height = 500
 rw.newDisplay(width, height, name)
 pg.init()
+pg.mixer.init
 myfont = pg.font.SysFont("monospace", 15)
+swish = pg.mixer.Sound("swish.wav")
+boo = pg.mixer.Sound("boo.wav")
 #basket_hoops = 0
 #hoop_height = 150
 
@@ -57,12 +60,14 @@ def updateState(state):
          #they scored
        # label = myfont.render("Your Score: " + str(state[4] + 1), 1, (0,0,0))
        # screen.blit(label, (10,10))
+        swish.play()
         print("nice")
         print(state[4] + 1)
         new_hoop_height = randint(100, 400)
         return (0, 0, 250, 0, state[4] + 1, new_hoop_height)
     elif(state[0] >= 500):
         #they missed
+        boo.play()
         print("booo")
         print(0)
         return (0, 0, 250, 0, 0, hoop_height)
@@ -84,15 +89,16 @@ def endState(state):
 
 ################################################################
 
+
 def handleEvent(state, event):
     if (event.type == pg.KEYDOWN and event.key == pg.K_UP):
-        if (state[0] and state[2] > 10) == 0:
+        if (state[0] == 0 and state[2] > 10):
             newState2 = -10
         else:
             newState2 = 0
         return(state[0],state[1], (state[2] + newState2),state[3], state[4], state[5])
     elif (event.type == pg.KEYDOWN and event.key == pg.K_DOWN):
-        if (state[0] and state[2] < 450) == 0:
+        if (state[0] == 0 and state[2] < 450):
             newState2 = +10
         else:
             newState2 = 0
