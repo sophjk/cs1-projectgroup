@@ -26,6 +26,9 @@ def updateDisplay(state):
     dw.fill(dw.white)
     dw.draw(ballimage, (state[0], state[2]))
     dw.draw(hoopimage, (400, state[5]))
+    Score = 'Score: ' + str(state[4])
+    label = dw.makeLabel(Score, 'helvetica', 30, (0, 0, 0))
+    dw.draw(label, (220, 420))
 
 
 ################################################################
