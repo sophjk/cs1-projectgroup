@@ -116,25 +116,31 @@ def endState(state):
 def handleEvent(state, event):
     if (event.type == pg.KEYDOWN and event.key == pg.K_UP):
         if (state.x == 0 and state.y > 10):
-            newState2 = -10
-        else:
-            newState2 = 0
+           # newState2 = -10
+           state.y -= 10
+       # else:
+           # newState2 = 0
+          # state.y = state.y + 10
             
-            state.y = state.y + newState2
+           # state.y = state.y + newState2
 
     elif (event.type == pg.KEYDOWN and event.key == pg.K_DOWN):
         if (state.x == 0 and state.y < 450):
-            newState2 = +10
-        else:
-            newState2 = 0
-            state.y = state.y + newState2
+           # newState2 = +10
+           state.y += 10
+       # else:
+       #     newState2 = 0
+       #     state.y = state.y + newState2
     elif (event.type == pg.KEYDOWN and event.key == pg.K_SPACE):
-        if (state.dx) == 0:
-            newState1 = 1.5
-        else:
-            newState1 = 0
-            state.dx = newState1
-            state.dy = newState1*-1
+        state.dx = 10
+        state.dy = -10
+      #  if (state.dx) == 0:
+       #     newState1 = 1.5
+       # else:
+       #     newState1 = 0
+       #     state.dx = newState1
+       #     state.dy = newState1*-1
+
     elif (event.type == pg.KEYDOWN and event.key == pg.K_q):
         #end the game with an event by moving the ball to an
         #expect position less than 0
