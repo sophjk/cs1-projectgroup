@@ -61,16 +61,20 @@ def updateState(state):
         # state.pts = state.pts
         # state.hoop = state.hoop
     
-    elif((rim + 30) <= (state.dx)  <= 500 and (hoop_height - 10) <= state.y <= (hoop_height + 2)):
+    elif((rim + 30) <= state.x  <= 500 and (hoop_height - 10) <= state.y <= (hoop_height + 2)):
          #they scored
        # label = myfont.render("Your Score: " + str(state.pts + 1), 1, (0,0,0))
        # screen.blit(label, (10,10))
         swish.play()
         print("nice")
-        print(state.pts + 1)
         new_hoop_height = randint(100, 400)
-        state.pts = state.pts + 1
+        state.pts += 1
         state.hoop = new_hoop_height
+        state.x = 0
+        state.y = randint(0, 500)
+        state.dx = 0
+        state.dy = 0
+        print(state.pts)
     elif ((rim - 10) <= (state.x + half_bw) <= (rim + 20) and
           (hoop_height - 5) <= state.y <= (hoop_height + .5)):
         rim_sound.play()
