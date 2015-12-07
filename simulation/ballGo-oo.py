@@ -71,7 +71,7 @@ def updateState(state):
         state.pts += 1
         state.hoop = new_hoop_height
         state.x = 0
-        state.y = randint(0, 500)
+        state.y = randint(30, 450)
         state.dx = 0
         state.dy = 0
         print(state.pts)
